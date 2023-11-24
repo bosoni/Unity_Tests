@@ -4,7 +4,7 @@ public class Singleton : MonoBehaviour
 {
     public static Singleton instance;
 
-    public enum MovingMode { Axis, Forward }
+    public enum MovingMode { Axis, Forward, End }
 
     [HideInInspector]
     public MovingMode movingMode = MovingMode.Axis;
@@ -37,16 +37,14 @@ public class Singleton : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.F12))
         {
             movingMode++;
-            if (movingMode == MovingMode.Forward)
+            if (movingMode == MovingMode.End)
                 movingMode = MovingMode.Axis;
         }
 
-        if (Input.GetKey(KeyCode.Tab))
+        if (Input.GetKeyUp(KeyCode.Tab))
             if (Cursor.lockState == CursorLockMode.Locked)
                 Cursor.lockState = CursorLockMode.None;
             else
                 Cursor.lockState = CursorLockMode.Locked;
-
-
     }
 }
